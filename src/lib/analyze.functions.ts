@@ -41,7 +41,7 @@ Do two things:
 
 Rules:
 - Base every claim on what is visible. Never invent content that is not in the image.
-- If the image contains no handwriting, set transcript to "" and confidence to 0 and say so in caveats.
+- If the text is typed/printed rather than handwritten, still transcribe and analyse it, and mention that in caveats. Only if the image contains no readable text at all, set transcript to "" and confidence to 0.
 - Emotion scores are 0..1 and should cover the most relevant 4-6 emotions for this sample.
 - indicators are literal quoted phrases from the transcript plus a short investigative note.
 - caveats must state the analytical limits: sentiment is advisory, reflects tone not legal intent, and requires corroboration.
