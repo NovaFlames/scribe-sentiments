@@ -45,6 +45,14 @@ const SENTIMENT_COLOR: Record<Analysis["sentiment"], string> = {
 
 const BAR_COLOR = ["bg-rose", "bg-amber", "bg-frost-2", "bg-teal", "bg-panel-2"];
 
+function certaintyTier(confidence: number) {
+  if (confidence >= 75)
+    return { label: "High certainty", note: "Reading is firm — verify before filing", bar: "bg-teal", text: "text-teal" };
+  if (confidence >= 45)
+    return { label: "Moderate certainty", note: "Reading is indicative — seek corroboration", bar: "bg-amber", text: "text-amber" };
+  return { label: "Low certainty", note: "Reading is weak — treat as unconfirmed", bar: "bg-rose", text: "text-rose" };
+}
+
 function caseNumber(seed: number) {
   return `#2026-${String(400 + seed).padStart(4, "0")}`;
 }
@@ -356,16 +364,46 @@ function Bench() {
                   <div className="font-mono text-[10px] uppercase tracking-widest text-dim">
                     Confidence
                   </div>
-                  <div className="mt-1 font-display text-3xl font-semibold leading-none text-frost">
-                    {analysis ? Math.round(analysis.confidence) : "--"}
-                    <span className="text-lg text-dim">%</span>
-                  </div>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/70">
-                    <div
-                      className="h-full bg-teal transition-[width] duration-700"
-                      style={{ width: `${analysis?.confidence ?? 0}%` }}
-                    />
-                  </div>
+                  {analysis ? (
+                    (() => {
+                      const tier = certaintyTier(analysis.confidence);
+                      return (
+                        <>
+                          <div className="mt-1 font-display text-3xl font-semibold leading-none text-frost">
+                            {Math.round(analysis.confidence)}
+                            <span className="text-lg text-dim">%</span>
+                          </div>
+                          <div
+                            className={`mt-1 font-mono text-[11px] uppercase tracking-wider ${tier.text}`}
+                          >
+                            {tier.label}
+                          </div>
+                          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/70">
+                            <div
+                              className={`h-full transition-[width] duration-700 ${tier.bar}`}
+                              style={{ width: `${analysis.confidence}%` }}
+                            />
+                          </div>
+                          <div className="mt-1.5 font-mono text-[10px] leading-snug text-dim">
+                            {tier.note}
+                          </div>
+                        </>
+                      );
+                    })()
+                  ) : (
+                    <>
+                      <div className="mt-1 font-display text-3xl font-semibold leading-none text-dim">
+                        --
+                        <span className="text-lg text-dim">%</span>
+                      </div>
+                      <div className="mt-1 font-mono text-[11px] text-dim">
+                        certainty unknown
+                      </div>
+                      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/70">
+                        <div className="h-full bg-dim/40" style={{ width: "0%" }} />
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 
