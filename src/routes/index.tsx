@@ -69,6 +69,7 @@ function Bench() {
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [log, setLog] = useState<Exhibit[]>([]);
   const [capturedAt, setCapturedAt] = useState<string | null>(null);
+  const [itemCount, setItemCount] = useState(0);
 
   const mutation = useMutation({
     mutationFn: async (imageDataUrl: string) =>
@@ -103,6 +104,7 @@ function Bench() {
     reader.readAsDataURL(picked);
     setFile({ name: picked.name, sizeKb: Math.round(picked.size / 1024) });
     setCapturedAt(new Date().toISOString());
+    setItemCount((n) => n + 1);
   }
 
   const errorMessage =
@@ -133,10 +135,6 @@ function Bench() {
           </div>
 
           <div className="ml-auto flex items-center gap-3">
-            <div className="hidden items-center gap-2 rounded-[min(1vw,7px)] bg-panel/60 px-3 py-1.5 ring-1 ring-line/40 md:flex">
-              <span className="size-1.5 rounded-full bg-teal" />
-              <span className="font-mono text-xs text-dim">Examiner bench</span>
-            </div>
             <button
               onClick={() => window.print()}
               disabled={!analysis}
@@ -160,8 +158,8 @@ function Bench() {
                   </div>
                   <h1 className="max-w-[40ch] text-balance font-display text-2xl font-semibold leading-tight text-frost">
                     {file
-                      ? `Item #${log.length + 1} — ${file.name}`
-                      : "Item #1 — Handwritten sample, awaiting intake"}
+                      ? `Item #${itemCount} — ${file.name}`
+                      : "Handwritten sample, awaiting intake"}
                   </h1>
                 </div>
                 <span className="hidden rounded-[min(1vw,6px)] bg-ink/60 px-2.5 py-1 font-mono text-[11px] text-teal ring-1 ring-teal/20 sm:inline">
@@ -217,7 +215,7 @@ function Bench() {
                     <dl className="divide-y divide-line/40 font-mono text-xs">
                       <div className="flex justify-between px-3 py-2">
                         <dt className="text-dim">File</dt>
-                        <dd className="max-w-[10ch] truncate text-frost-2">
+                        <dd className="break-all text-right text-frost-2">
                           {file?.name ?? "—"}
                         </dd>
                       </div>
@@ -231,7 +229,7 @@ function Bench() {
                         <dt className="text-dim">Logged</dt>
                         <dd className="text-frost-2">
                           {capturedAt
-                            ? `${capturedAt.slice(11, 19)}Z`
+                            ? new Date(capturedAt).toLocaleTimeString()
                             : "--:--:--"}
                         </dd>
                       </div>
@@ -251,6 +249,13 @@ function Bench() {
                     placeholder="Examiner context (optional): where recovered, suspected author, prior samples…"
                     className="resize-none rounded-[min(1.2vw,10px)] bg-ink/50 p-3 font-mono text-xs text-frost-2 outline-none ring-1 ring-line/40 placeholder:text-dim focus:ring-teal/40"
                   />
+                  <button
+                    type="button"
+                    onClick={() => inputRef.current?.click()}
+                    className="rounded-[min(1.2vw,10px)] bg-panel px-4 py-2.5 text-sm font-medium text-frost ring-1 ring-line/50 transition-transform hover:-translate-y-0.5"
+                  >
+                    {preview ? "Replace image" : "Choose image"}
+                  </button>
                   <button
                     onClick={() => preview && mutation.mutate(preview)}
                     disabled={!preview || mutation.isPending}
