@@ -135,10 +135,6 @@ function Bench() {
           <div className="ml-auto flex items-center gap-3">
             <div className="hidden items-center gap-2 rounded-[min(1vw,7px)] bg-panel/60 px-3 py-1.5 ring-1 ring-line/40 md:flex">
               <span className="size-1.5 rounded-full bg-teal" />
-              <span className="font-mono text-xs text-frost-2">
-                CASE {caseNumber(log.length + 17)}
-              </span>
-              <span className="text-dim">·</span>
               <span className="font-mono text-xs text-dim">Examiner bench</span>
             </div>
             <button
