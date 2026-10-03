@@ -157,10 +157,19 @@ function Bench() {
                     Exhibit A · Source Evidence
                   </div>
                   <h1 className="max-w-[40ch] text-balance font-display text-2xl font-semibold leading-tight text-frost">
+                    Handwriting Sentiment Examination
+                  </h1>
+                  <p className="mt-1.5 max-w-[52ch] text-[13px] leading-relaxed text-dim">
+                    Forensic bench for investigators: upload a photo or scan of a
+                    handwritten note to transcribe it and assess the writer's
+                    sentiment, emotional signals, and flagged phrases. Results are
+                    advisory and require corroboration.
+                  </p>
+                  <div className="mt-2 font-mono text-[11px] text-teal">
                     {file
                       ? `Item #${itemCount} — ${file.name}`
                       : "Handwritten sample, awaiting intake"}
-                  </h1>
+                  </div>
                 </div>
                 <span className="hidden rounded-[min(1vw,6px)] bg-ink/60 px-2.5 py-1 font-mono text-[11px] text-teal ring-1 ring-teal/20 sm:inline">
                   {preview ? "DIGITIZED" : "EMPTY"}
