@@ -8,20 +8,20 @@ import { analyzeHandwriting, type Analysis } from "@/lib/analyze.functions";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Quill/Bench — Handwriting Sentiment Examination" },
+      { title: "Forensic Handwriting Analysis — Quill/Bench Sentiment Examination" },
       {
         name: "description",
         content:
-          "Upload a scan of handwritten text and get an advisory sentiment and emotional-state read for police and detective investigations.",
+          "Forensic handwriting analysis for police and detectives: upload a scan of handwritten text and get an advisory sentiment and emotional-state read for investigations.",
       },
       {
         property: "og:title",
-        content: "Quill/Bench — Handwriting Sentiment Examination",
+        content: "Forensic Handwriting Analysis — Quill/Bench Sentiment Examination",
       },
       {
         property: "og:description",
         content:
-          "Forensic bench for transcribing handwritten evidence and reading the writer's emotional tone.",
+          "Forensic handwriting analysis bench for transcribing handwritten evidence and reading the writer's emotional tone.",
       },
     ],
   }),
@@ -157,7 +157,7 @@ function Bench() {
                     Exhibit A · Source Evidence
                   </div>
                   <h1 className="max-w-[40ch] text-balance font-display text-2xl font-semibold leading-tight text-frost">
-                    Handwriting Sentiment Examination
+                    Forensic Handwriting Analysis — Sentiment Examination
                   </h1>
                   <p className="mt-1.5 max-w-[52ch] text-[13px] leading-relaxed text-dim">
                     Forensic bench for investigators: upload a photo or scan of a
