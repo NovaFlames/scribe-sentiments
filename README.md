@@ -1,26 +1,30 @@
 # Insight Ink
 
-create an web app where user can upload handwritten text to perform sentiment analysis for checking the sentiment of the writer. This app is to be made for police and detective investigation
+A web application for analyzing sentiment in handwritten text. Upload a handwritten sample to review its transcribed content and sentiment—designed as an investigative aid for police and detective work.
 
-This project was built with [Lovable](https://lovable.dev).
+> **Important:** Sentiment analysis is an automated, probabilistic interpretation. It can be inaccurate and should not be treated as proof, a psychological assessment, or a substitute for professional judgment. Verify results against reliable evidence and other investigative methods.
 
-**Live app**: https://scribe-sentiments.lovable.app
+## Live Demo
 
-## Build with Lovable
+[Open Insight Ink](https://scribe-sentiments.lovable.app)
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/584932a7-3d1e-481d-83e5-8263922d79d0).
+## Getting Started
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+### Prerequisites
 
-## Development
+- [Node.js](https://nodejs.org/) and npm
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+### Install and run locally
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+git clone https://github.com/NovaFlames/scribe-sentiments.git
+cd scribe-sentiments
+npm install
 npm run dev
 ```
+
+Follow the local URL printed by the development server to open the app.
+
+## Contributing
+
+Contributions and suggestions are welcome. Open an issue to report a problem or propose an improvement.
